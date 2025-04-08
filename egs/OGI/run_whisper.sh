@@ -19,7 +19,8 @@ if [ $stage -le 1 ] && [ $end_stage -ge 1 ]; then
   # openai/whisper-large       1550M
   # openai/whisper-large-v3    1550M
 
-  models="tiny.en base.en small.en medium.en large large-v3"
+  #models="tiny.en base.en small.en medium.en large large-v3"
+  models="small.en"
   comupte_wer=true     # in python code
   using_sclite=true    # post python code
   chunk_length=30
@@ -58,10 +59,10 @@ fi
 if [ $stage -le 2 ] && [ $end_stage -ge 2 ]; then
   # Finetuning Whisper Model
 
-  #exp_dir="exp/whisper_small_en_trans_fullfinetuning_lr1e-5_2gpus_4ksteps/"
+  exp_dir="exp/whisper_small_en_trans_fullfinetuning_lr1e-5_2gpus_4ksteps/"
   #exp_dir="exp/whisper_medium_en_trans_adapter_encdec_lr1e-4_bn32_zeroinit_2gpus_4ksteps/"
   #exp_dir="exp/whisper_medium_en_trans_fullfinetuning_lr1e-5_2gpus_4ksteps/"
-  exp_dir="exp/whisper_large_en_trans_adapter_encdec_lr1e-4_bn32_zeroinit_2gpus_4ksteps/"
+  #exp_dir="exp/whisper_large_en_trans_adapter_encdec_lr1e-4_bn32_zeroinit_2gpus_4ksteps/"
   
   [ ! -d $exp_dir ] && mkdir -p $exp_dir
 

@@ -6,6 +6,7 @@
 export rootdir=/data/ruchao/workdir/SPAPL_KidsASR/
 export PATH=$PATH:/data/ruchao/workdir/kaldi/tools/sctk/bin/:$rootdir/src/bin:
 
+# control which stages to run 
 stage=0
 end_stage=0
 
@@ -19,12 +20,15 @@ if [ $stage -le 1 ] && [ $end_stage -ge 1 ]; then
   # openai/whisper-large       1550M
   # openai/whisper-large-v2    1550M
 
-  models="tiny.en base.en small.en medium.en large large-v2"
+  #models="tiny.en base.en small.en medium.en large large-v2"
+
+  models="small.en" # KL: only training and evaluating whisper small 
   comupte_wer=true     # in python code
   using_sclite=true    # post python code
   chunk_length=30
   expdir=exp/whisper_zero_shot
 
+  # stage 1: evaluation of whisper model without any finetuning
   for model in $models; do
     model_name=openai/whisper-$model
     echo "Evaluating Model: $model_name"
@@ -56,14 +60,14 @@ if [ $stage -le 1 ] && [ $end_stage -ge 1 ]; then
 fi
 
 if [ $stage -le 2 ] && [ $end_stage -ge 2 ]; then
-  # Finetuning Whisper Model
+  # stage 2: finetuning whisper model
 
-  #exp_dir="exp/whisper_small_en_trans_fullfinetuning_lr1e-5_2gpus_specaug_splibrosa_4ksteps/"
-  exp_dir="exp/whisper_small_en_trans_adapter_encdec_lr1e-4_bn32_zeroinit_2gpus_4ksteps/"
+  exp_dir="exp/whisper_small_en_trans_fullfinetuning_lr1e-5_2gpus_specaug_splibrosa_4ksteps/"
+  #exp_dir="exp/whisper_small_en_trans_adapter_encdec_lr1e-4_bn32_zeroinit_2gpus_4ksteps/"
 
   [ ! -d $exp_dir ] && mkdir -p $exp_dir
 
-  train_config=conf/whisper_small_train.yaml
+  train_config=conf/whisper_small_train.yaml # change this configuration file for finetuning method
 
   CUDA_VISIBLE_DEVICES="0,1" torchrun --rdzv-endpoint=localhost:21221 \
  	  --nproc_per_node 2 $rootdir/src/bin/train_asr.py $train_config  > $exp_dir/train.log 2>&1 &
@@ -72,7 +76,7 @@ if [ $stage -le 2 ] && [ $end_stage -ge 2 ]; then
 fi
 
 if [ $stage -le 3 ] && [ $end_stage -ge 3 ]; then
-  # Evaluation of the finetuned Whisper Model
+  # stage 3: evaluation of the finetuned whisper model
 
   exp_dir="exp/whisper_small_en_trans_fullfinetuning_lr1e-4_2gpus_4ksteps/"
 

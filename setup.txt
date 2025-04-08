@@ -1,0 +1,46 @@
+1. in venv: 
+python -m pip install --upgrade pip (upgrade python)
+pip install torch transformers==4.32.1 datasets
+pip install soundfile librosa numpy
+
+2. to install kaldi: 
+# Clone Kaldi repository
+git clone https://github.com/kaldi-asr/kaldi.git
+
+# Build the tools (including sclite)
+cd kaldi/tools
+extras/check_dependencies.sh  # Install any missing dependencies it reports
+make -j $(nproc)  # This builds all tools including sclite
+
+Data: 
+wav.scp file: connects every utterance (sentence said by one person during particular recording session) with an audio file related to this utterance.
+
+/src/data/whisper_loader.py: loads dataset for Whisper, does data augmentation based on arguments in whisper_small_train.yaml
+
+FOR OGI DATASET: 
+Stage 1: Evaluation of Whisper (in run_whisper.sh) 
+/egs/OGI/data/dev/wav.scp 
+/egs/OGI/data/dev/text
+
+/egs/OGI/data/test/wav.scp 
+/egs/OGI/data/test/text
+
+/egs/OGI/data/spont_al/wav.scp 
+/egs/OGI/data/spont_al/text
+
+tasks, both OGI and MyST: 
+1. stage 1: evaluation of baseline whisper model 
+2. run stage 2 and 3: full-finetuning without data augmentation 
+3. run stage 2 and 3: full-finetuning with VTLP 
+4. run stage 2 and 3: full-finetuning with SP 
+5. run stage 2 and 3: full-finetuning with PP 
+6. run stage 2 and 3: full-finetuning with SA
+
+try combinations: 
+1. SA + PP
+2. SA + SP 
+3. SA + VTLP
+
+try PIF with VLTP and PP. 
+
+
