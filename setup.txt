@@ -12,10 +12,30 @@ cd kaldi/tools
 extras/check_dependencies.sh  # Install any missing dependencies it reports
 make -j $(nproc)  # This builds all tools including sclite
 
-Data: 
+
+
+
+Data format in OGI Kids: 
+https://github.com/OSU-slatelab/OGI-kids-phoneme-recognition/blob/main/ogi_prepare.py
+
+.wav files are in: 
+{data_folder}/speech/scripted/
+
+transcription files are in: 
+with open(train_align_file) as f:
+    train_alignments = json.load(f)
+with open(valid_align_file) as f:
+    valid_alignments = json.load(f)
+
+JSON files contain alignments —> probably mappings from sentence ID → transcribed words
+
+
+
+Data accepted in code: 
 wav.scp file: connects every utterance (sentence said by one person during particular recording session) with an audio file related to this utterance.
 
 /src/data/whisper_loader.py: loads dataset for Whisper, does data augmentation based on arguments in whisper_small_train.yaml
+
 
 FOR OGI DATASET: 
 Stage 1: Evaluation of Whisper (in run_whisper.sh) 
