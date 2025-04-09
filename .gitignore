@@ -1,4 +1,4 @@
-/egs/*/data
+#/egs/*/data
 /egs/*/exp*
 /egs/*/cached*
 /egs/*/*.log
