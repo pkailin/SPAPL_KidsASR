@@ -100,12 +100,29 @@ def main():
         raw_datasets["train"] = raw_datasets["train"].to_iterable_dataset(num_shards=8)
         raw_datasets["valid"] = raw_datasets["valid"].to_iterable_dataset(num_shards=8)
         
+        """
+        # Using Distributed Training (Multiple GPUs) 
         world_size = torch.distributed.get_world_size()       
         if world_size > 1:
             rank = torch.distributed.get_rank()
             raw_datasets["train"] = split_dataset_by_node(raw_datasets["train"], rank=rank, world_size=world_size)
             raw_datasets["train"] = raw_datasets["train"].shuffle(seed=training_args.seed, buffer_size=100000)
             raw_datasets["valid"] = split_dataset_by_node(raw_datasets["valid"], rank=rank, world_size=world_size)
+        """
+        
+        # Using 1 GPU 
+        if torch.distributed.is_available() and torch.distributed.is_initialized():
+            world_size = torch.distributed.get_world_size()
+            rank = torch.distributed.get_rank()
+        else:
+            world_size = 1
+            rank = 0
+
+        if world_size > 1:
+            raw_datasets["train"] = split_dataset_by_node(raw_datasets["train"], rank=rank, world_size=world_size)
+            raw_datasets["train"] = raw_datasets["train"].shuffle(seed=training_args.seed, buffer_size=100000)
+            raw_datasets["valid"] = split_dataset_by_node(raw_datasets["valid"], rank=rank, world_size=world_size)
+
     
     assert data_args.audio_column_name in next(iter(raw_datasets.values())).column_names, "missing audio or incorrect audio column name"
     assert data_args.text_column_name in next(iter(raw_datasets.values())).column_names, "missing text or incorrect text column name"
@@ -278,7 +295,8 @@ def main():
             tokenizer.save_pretrained(training_args.output_dir)
             if hasattr(config, "peft_config"):
                 import dataclasses
-                config.peft_config = dataclasses.asdict(config.peft_config)
+                if dataclasses.is_dataclass(config.peft_config): # only convert if not dict
+                    config.peft_config = dataclasses.asdict(config.peft_config)
             config.save_pretrained(training_args.output_dir)
 
     processor = AutoProcessor.from_pretrained(training_args.output_dir)

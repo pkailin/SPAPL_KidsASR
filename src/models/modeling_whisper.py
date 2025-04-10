@@ -1708,6 +1708,7 @@ class WhisperModel(WhisperPreTrainedModel):
 
                 # MSE_loss
                 pif_loss = F.mse_loss(encoder_outputs.hidden_states[int(pif_layer)], perturbed_encoder_outputs.hidden_states[int(pif_layer)], reduction='none')
+                print(attention_mask)
                 attention_mask = attention_mask[:,::2].unsqueeze(-1)
                 pif_loss = pif_loss.masked_fill(attention_mask==0, 0).sum() / attention_mask.sum() / pif_loss.size(-1)
 
