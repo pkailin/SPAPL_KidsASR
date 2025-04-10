@@ -40,7 +40,7 @@ pif_loss_alpha: 1.0
 pif_layer: 12   # 0-12
 
 # PEFT Argument
-peft_type: "False"
+peft_type: "prefix_tuning"
 lora_dim: 8
 lora_alpha: 128
 dropout: 0.1

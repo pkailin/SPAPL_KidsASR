@@ -7,8 +7,8 @@ export rootdir=/home/klp65/SPAPL_KidsASR/
 export PATH=$PATH:/home/klp65/kaldi/tools/sctk-20159b5/bin/:$rootdir/src/bin:
 
 # control which stages to run 
-stage=1
-end_stage=1
+stage=2
+end_stage=2
 
 if [ $stage -le 1 ] && [ $end_stage -ge 1 ]; then
   # decode myst development and test sets with openai whisper models
