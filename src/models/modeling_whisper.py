@@ -465,6 +465,7 @@ class WhisperAttention(nn.Module):
         value_states = value_states.reshape(*proj_shape)
 
         src_len = key_states.size(1)
+
         attn_weights = torch.bmm(query_states, key_states.transpose(1, 2))
 
         if attn_weights.size() != (bsz * self.num_heads, tgt_len, src_len):
