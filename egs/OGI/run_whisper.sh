@@ -3,8 +3,8 @@
 # 2023-2024 (Ruchao Fan)
 # experiments for whisper model
 
-export rootdir=/data/ruchao/workdir/SPAPL_KidsASR/
-export PATH=$PATH:/data/ruchao/workdir/kaldi/tools/sctk/bin/:$rootdir/src/bin:
+export rootdir=/home/klp65/SPAPL_KidsASR/
+export PATH=$PATH:/home/klp65/kaldi/tools/sctk-20159b5/bin/:$rootdir/src/bin:
 
 stage=2
 end_stage=2
@@ -59,17 +59,25 @@ fi
 if [ $stage -le 2 ] && [ $end_stage -ge 2 ]; then
   # Finetuning Whisper Model
 
-  exp_dir="exp/whisper_small_en_trans_fullfinetuning_lr1e-5_2gpus_4ksteps/"
+  exp_dir="exp/whisper_small_en_trans_fullfinetuning_lr1e-5_4ksteps/"
   #exp_dir="exp/whisper_medium_en_trans_adapter_encdec_lr1e-4_bn32_zeroinit_2gpus_4ksteps/"
   #exp_dir="exp/whisper_medium_en_trans_fullfinetuning_lr1e-5_2gpus_4ksteps/"
   #exp_dir="exp/whisper_large_en_trans_adapter_encdec_lr1e-4_bn32_zeroinit_2gpus_4ksteps/"
   
   [ ! -d $exp_dir ] && mkdir -p $exp_dir
 
-  train_config=conf/whisper_large_train.yaml
+  train_config=conf/whisper_small_train.yaml 
 
-  CUDA_VISIBLE_DEVICES="2,3" torchrun --rdzv-endpoint=localhost:21227 \
- 	  --nproc_per_node 2 $rootdir/src/bin/train_asr.py $train_config  #> $exp_dir/train.log 2>&1 &
+  #CUDA_VISIBLE_DEVICES="2,3" torchrun --rdzv-endpoint=localhost:21227 \
+ 	  #--nproc_per_node 2 $rootdir/src/bin/train_asr.py $train_config  #> $exp_dir/train.log 2>&1 &
+
+
+  # Use All GPUs available
+  #torchrun --rdzv-endpoint=localhost:21227 \
+	      #--nproc_per_node $(nvidia-smi -L | wc -l) $rootdir/src/bin/train_asr.py $train_config #> $exp_dir/train.log 2>&1 &
+
+  # 1 GPU Hardcode  
+  $rootdir/src/bin/train_asr.py $train_config  #> $exp_dir/train.log 2>&1 &
   
   echo "[Stage 2] Finetuning Whisper Models Finished."
 fi

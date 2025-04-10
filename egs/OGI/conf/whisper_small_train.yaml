@@ -20,7 +20,7 @@ dev_data_path:
     scp_path: data/dev/wav.scp 
     text_label: data/dev/text
 
-streaming: True
+streaming: False
 language: "en"  # None for english
 task: "transcribe"
 max_duration_in_seconds: 30
@@ -35,12 +35,12 @@ sp_low: 0.9
 sp_high: 1.1
 use_pitch_perturb: False # DA: PP
 pitch_level: 12  # 12 steps for octave 
-use_pif: False # PIF, only done for VTLP and PP 
+use_pif: True # PIF, only done for VTLP and PP 
 pif_loss_alpha: 1.0
 pif_layer: 12   # 0-12
 
 # PEFT Argument
-peft_type: False # could be "lora", "adapter", "prompt_tuning", "prefix_tuning" or False (full finetuning)
+peft_type: "False" # could be "lora", "adapter", "prompt_tuning", "prefix_tuning" or False (full finetuning)
 lora_dim: 8
 lora_alpha: 128
 dropout: 0.1
@@ -76,8 +76,8 @@ save_strategy: "steps"
 save_steps: 1000 
 generation_max_length: 225 
 length_column_name: "input_length"
-gradient_checkpointing: True
+gradient_checkpointing: False # changed due to error
 group_by_length: False              # True for map style Dataset
-fp16: True
+fp16: False # changed due to error
 predict_with_generate: True
 dataloader_drop_last: True
