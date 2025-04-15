@@ -6,8 +6,8 @@
 export rootdir=/home/klp65/SPAPL_KidsASR/
 export PATH=$PATH:/home/klp65/kaldi/tools/sctk-20159b5/bin/:$rootdir/src/bin:
 
-stage=2
-end_stage=2
+stage=1
+end_stage=1
 
 if [ $stage -le 1 ] && [ $end_stage -ge 1 ]; then
   # decode myst development and test sets with openai whisper models
@@ -30,7 +30,8 @@ if [ $stage -le 1 ] && [ $end_stage -ge 1 ]; then
     model_name=openai/whisper-$model
     echo "Evaluating Model: $model_name"
 
-    for x in dev test spont_all; do 
+    #for x in dev test spont_all; do 
+    for x in dev test; do
 
       resultdir=$expdir/$model/${x}/
       [ ! -d $resultdir ] && mkdir -p $resultdir
@@ -93,7 +94,8 @@ if [ $stage -le 3 ] && [ $end_stage -ge 3 ]; then
   using_sclite=true    # post python code
   chunk_length=30
 
-  for x in dev test spont_all; do
+  #for x in dev test spont_all; do
+  for x in dev test; do
 
     checkpoints="checkpoint-4000"
     for checkpoint in $checkpoints; do

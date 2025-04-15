@@ -1,0 +1,3 @@
+Evaluating Model: openai/whisper-small.en
+compute WER using sclite for test_myst
+[Stage 1] Evaluation of Whisper Models Finished.

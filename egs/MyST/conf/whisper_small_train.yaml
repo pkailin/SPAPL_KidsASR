@@ -11,14 +11,14 @@ load_best_model_at_end: True
 train_data_path:
   1:
     name: 'train'
-    scp_path: data/train_filter/wav.scp
-    text_label: data/train_filter/text
+    scp_path: data/train_myst/wav.scp
+    text_label: data/train_myst/text
 
 dev_data_path:
   1:
     name: 'development'
-    scp_path: data/select_valid/wav.scp 
-    text_label: data/select_valid/text
+    scp_path: data/dev_myst/wav.scp 
+    text_label: data/dev_myst/text
 
 streaming: True
 language: "en"  # None for english
@@ -40,7 +40,7 @@ pif_loss_alpha: 1.0
 pif_layer: 12   # 0-12
 
 # PEFT Argument
-peft_type: "prefix_tuning"
+peft_type: "prompt_tuning"
 lora_dim: 8
 lora_alpha: 128
 dropout: 0.1
@@ -60,11 +60,7 @@ prefix_hidden_dim: 16
 # Train Argument
 seed: 1234
 max_steps: 4000
-#output_dir: "exp/whisper_small_en_trans_fullfinetuning_lr1e-5_2gpus_specaug_pitchpert2_4ksteps/"
-#output_dir: "exp/whisper_small_en_trans_pifinetuning1_encout_lr1e-5_2gpus_specaug_vtlp0.9_1.1_4ksteps"
-#output_dir: "exp/whisper_small_en_trans_prefixtuning_enc50dec10_hidden16_lr1e-3_2gpus_4ksteps/"
-output_dir: "exp/whisper_small_en_trans_adapter_encdec_lr1e-4_bn32_zeroinit_2gpus_4ksteps/"
-#output_dir: "exp/whisper_small_en_trans_lora_encdec_dim8_alpha128_lr1e-3_2gpus_4ksteps/"
+output_dir: "exp/noDA_noCSLU_promptFT_lr1e-4_4ksteps/"
 overwrite_output_dir: False
 per_device_train_batch_size: 16  # actually for all gpus because using split_batches=True
 gradient_accumulation_steps: 2

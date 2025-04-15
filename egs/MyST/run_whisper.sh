@@ -24,7 +24,7 @@ if [ $stage -le 1 ] && [ $end_stage -ge 1 ]; then
 
   models="small.en" # KL: only training and evaluating whisper small 
   comupte_wer=true     # in python code
-  using_sclite=true    # post python code
+  using_sclite=false    # post python code
   chunk_length=30
   expdir=exp/whisper_zero_shot
 
@@ -33,7 +33,8 @@ if [ $stage -le 1 ] && [ $end_stage -ge 1 ]; then
     model_name=openai/whisper-$model
     echo "Evaluating Model: $model_name"
 
-    for x in test_filter_lt30 test_filter_gt30 development_filter; do # test_raw development_raw; do # test_filter_lt30 
+    #for x in test_filter_lt30 test_filter_gt30 development_filter; do # test_raw development_raw; do # test_filter_lt30
+    for x in test_myst; do
 
       resultdir=$expdir/$model/${x}/
       [ ! -d $resultdir ] && mkdir -p $resultdir
@@ -48,7 +49,6 @@ if [ $stage -le 1 ] && [ $end_stage -ge 1 ]; then
         --result_hyp_file $resultdir/hyp.txt \
         --chunk_length $chunk_length > $resultdir/decode.log 2>&1
         
-      
       if [ $using_sclite ]; then
         echo "compute WER using sclite for $x"
         sclite -r $resultdir/ref.txt -h $resultdir/hyp.txt -i rm -o all stdout > $resultdir/result.wrd.txt
@@ -62,7 +62,7 @@ fi
 if [ $stage -le 2 ] && [ $end_stage -ge 2 ]; then
   # stage 2: finetuning whisper model
 
-  exp_dir="exp/whisper_small_en_trans_fullfinetuning_lr1e-5_2gpus_specaug_splibrosa_4ksteps/"
+  exp_dir="exp/noDA_noCSLU_promptFT_lr1e-4_4ksteps/"
   #exp_dir="exp/whisper_small_en_trans_adapter_encdec_lr1e-4_bn32_zeroinit_2gpus_4ksteps/"
 
   [ ! -d $exp_dir ] && mkdir -p $exp_dir
