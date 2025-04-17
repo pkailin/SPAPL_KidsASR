@@ -66,7 +66,17 @@ def process_file(input_file, output_file):
                 f_out.write(f"{line}\n")
 
 if __name__ == "__main__":
-    input_file = "spont_text"
-    output_file = "spont_text_edited"
+    input_file = "train_text"
+    output_file = "train_text_edited"
+    process_file(input_file, output_file)
+    print(f"Conversion complete! Numbers and ordinals have been converted to words in {output_file}")
+
+    input_file = "dev_text"
+    output_file = "dev_text_edited"
+    process_file(input_file, output_file)
+    print(f"Conversion complete! Numbers and ordinals have been converted to words in {output_file}")
+
+    input_file = "test_text"
+    output_file = "test_text_edited"
     process_file(input_file, output_file)
     print(f"Conversion complete! Numbers and ordinals have been converted to words in {output_file}")

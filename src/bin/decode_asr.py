@@ -47,6 +47,9 @@ def main():
     model = WhisperForConditionalGeneration.from_pretrained(args.model, config=config, cache_dir=cache_dir_model).to("cuda")
 
     if hasattr(config, "peft_config"):
+        print(config.peft_config)
+        config.peft_config = PEFTArguments(**config.peft_config)
+        print(config.peft_config.peft_type)
         if config.peft_config.peft_type == "prefix_tuning":
             model.generation_config.max_length -= config.peft_config.prefix_seq_len[1]
     

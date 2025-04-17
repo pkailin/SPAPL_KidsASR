@@ -7,8 +7,8 @@ export rootdir=/home/klp65/SPAPL_KidsASR/
 export PATH=$PATH:/home/klp65/kaldi/tools/sctk-20159b5/bin/:$rootdir/src/bin:
 
 # control which stages to run 
-stage=2
-end_stage=2
+stage=3
+end_stage=3
 
 if [ $stage -le 1 ] && [ $end_stage -ge 1 ]; then
   # decode myst development and test sets with openai whisper models
@@ -34,7 +34,7 @@ if [ $stage -le 1 ] && [ $end_stage -ge 1 ]; then
     echo "Evaluating Model: $model_name"
 
     #for x in test_filter_lt30 test_filter_gt30 development_filter; do # test_raw development_raw; do # test_filter_lt30
-    for x in test_myst; do
+    for x in test_cslu_scripted; do
 
       resultdir=$expdir/$model/${x}/
       [ ! -d $resultdir ] && mkdir -p $resultdir
@@ -81,20 +81,20 @@ fi
 if [ $stage -le 3 ] && [ $end_stage -ge 3 ]; then
   # stage 3: evaluation of the finetuned whisper model
 
-  exp_dir="exp/whisper_small_en_trans_fullfinetuning_lr1e-4_2gpus_4ksteps/"
+  exp_dir="exp/noDA_noCSLU_promptFT_lr1e-4_4ksteps/"
 
   comupte_wer=true     # in python code
-  using_sclite=true    # post python code
+  using_sclite=false    # post python code
   chunk_length=30
 
-  for x in development_filter test_filter_lt30 test_filter_gt30; do
+  for x in test_myst test_cslu_scripted test_cslu_spont; do
 
     checkpoints="checkpoint-4000"
     for checkpoint in $checkpoints; do
       resultdir=$exp_dir/$checkpoint/${x}/
       [ ! -d $resultdir ] && mkdir -p $resultdir
 
-      CUDA_VISIBLE_DEVICES="1" decode_asr.py \
+      CUDA_VISIBLE_DEVICES="0" decode_asr.py \
         --wav_scp data/$x/wav.scp \
         --trn_scp data/$x/text \
         --model $exp_dir/$checkpoint \

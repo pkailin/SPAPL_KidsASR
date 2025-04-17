@@ -178,8 +178,8 @@ def main():
     utterance_paths = parse_tsv(tsv_file)
     utterance_transcripts = parse_mlf(mlf_file)
   
-    print(utterance_paths)
-    print(utterance_transcripts)
+    print(len(utterance_paths))
+    print(len(utterance_transcripts))
 
     # Combine data and replace path prefix
     utterance_data = {}

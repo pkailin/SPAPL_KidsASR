@@ -64,7 +64,7 @@ output_dir: "exp/noDA_noCSLU_promptFT_lr1e-4_4ksteps/"
 overwrite_output_dir: False
 per_device_train_batch_size: 16  # actually for all gpus because using split_batches=True
 gradient_accumulation_steps: 2
-per_device_eval_batch_size: 16 
+per_device_eval_batch_size: 16
 logging_steps: 50
 learning_rate: 0.0001    # 1e-3 for peft and 1e-5 for full finetuning
 warmup_steps: 500
@@ -76,6 +76,6 @@ generation_max_length: 225
 length_column_name: "input_length"
 gradient_checkpointing: False
 group_by_length: False              # True for map style Dataset
-fp16: False
+fp16: True
 predict_with_generate: True
 dataloader_drop_last: True

@@ -1,0 +1,3 @@
+compute WER using sclite for test_myst
+compute WER using sclite for test_cslu_scripted
+compute WER using sclite for test_cslu_spont

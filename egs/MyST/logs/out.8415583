@@ -1,0 +1,3 @@
+Evaluating Model: openai/whisper-small.en
+compute WER using sclite for test_cslu_scripted
+[Stage 1] Evaluation of Whisper Models Finished.

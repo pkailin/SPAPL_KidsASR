@@ -1,0 +1,331 @@
+04/16/2025 17:56:33 - WARNING - __main__ - Process rank: 0, device: cuda:0, n_gpu: 1, distributed training: False, 16-bits training: True
+04/16/2025 17:56:33 - INFO - __main__ - Training/evaluation parameters Seq2SeqTrainingArguments(
+_n_gpu=1,
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-08,
+auto_find_batch_size=False,
+bf16=False,
+bf16_full_eval=False,
+data_seed=None,
+dataloader_drop_last=True,
+dataloader_num_workers=0,
+dataloader_pin_memory=True,
+ddp_backend=None,
+ddp_broadcast_buffers=None,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800,
+debug=[],
+deepspeed=None,
+disable_tqdm=False,
+dispatch_batches=None,
+do_eval=True,
+do_predict=False,
+do_train=False,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_steps=1000,
+evaluation_strategy=steps,
+fp16=True,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+generation_config=None,
+generation_max_length=225,
+generation_num_beams=None,
+gradient_accumulation_steps=2,
+gradient_checkpointing=False,
+greater_is_better=False,
+group_by_length=False,
+half_precision_backend=auto,
+hub_always_push=False,
+hub_model_id=None,
+hub_private_repo=False,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_inputs_for_metrics=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=0.0001,
+length_column_name=input_length,
+load_best_model_at_end=True,
+local_rank=0,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=exp/noDA_noCSLU_promptFT_lr1e-4_4ksteps/runs/Apr16_17-56-33_gpu-q-10,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=50,
+logging_strategy=steps,
+lr_scheduler_type=linear,
+max_grad_norm=1.0,
+max_steps=4000,
+metric_for_best_model=loss,
+mp_parameters=,
+no_cuda=False,
+num_train_epochs=3.0,
+optim=adamw_torch,
+optim_args=None,
+output_dir=exp/noDA_noCSLU_promptFT_lr1e-4_4ksteps/,
+overwrite_output_dir=False,
+past_index=-1,
+per_device_eval_batch_size=16,
+per_device_train_batch_size=16,
+predict_with_generate=True,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=['tensorboard'],
+resume_from_checkpoint=None,
+run_name=exp/noDA_noCSLU_promptFT_lr1e-4_4ksteps/,
+save_on_each_node=False,
+save_safetensors=False,
+save_steps=1000,
+save_strategy=steps,
+save_total_limit=None,
+seed=1234,
+sharded_ddp=[],
+skip_memory_metrics=True,
+sortish_sampler=False,
+tf32=None,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_cpu=False,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_mps_device=False,
+warmup_ratio=0.0,
+warmup_steps=500,
+weight_decay=0.0,
+)
+04/16/2025 17:56:33 - INFO - __main__ - Training/evaluation parameters Seq2SeqTrainingArguments(
+_n_gpu=1,
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-08,
+auto_find_batch_size=False,
+bf16=False,
+bf16_full_eval=False,
+data_seed=None,
+dataloader_drop_last=True,
+dataloader_num_workers=0,
+dataloader_pin_memory=True,
+ddp_backend=None,
+ddp_broadcast_buffers=None,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800,
+debug=[],
+deepspeed=None,
+disable_tqdm=False,
+dispatch_batches=None,
+do_eval=True,
+do_predict=False,
+do_train=False,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_steps=1000,
+evaluation_strategy=steps,
+fp16=True,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+generation_config=None,
+generation_max_length=225,
+generation_num_beams=None,
+gradient_accumulation_steps=2,
+gradient_checkpointing=False,
+greater_is_better=False,
+group_by_length=False,
+half_precision_backend=auto,
+hub_always_push=False,
+hub_model_id=None,
+hub_private_repo=False,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_inputs_for_metrics=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=0.0001,
+length_column_name=input_length,
+load_best_model_at_end=True,
+local_rank=0,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=exp/noDA_noCSLU_promptFT_lr1e-4_4ksteps/runs/Apr16_17-56-33_gpu-q-10,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=50,
+logging_strategy=steps,
+lr_scheduler_type=linear,
+max_grad_norm=1.0,
+max_steps=4000,
+metric_for_best_model=loss,
+mp_parameters=,
+no_cuda=False,
+num_train_epochs=3.0,
+optim=adamw_torch,
+optim_args=None,
+output_dir=exp/noDA_noCSLU_promptFT_lr1e-4_4ksteps/,
+overwrite_output_dir=False,
+past_index=-1,
+per_device_eval_batch_size=16,
+per_device_train_batch_size=16,
+predict_with_generate=True,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=['tensorboard'],
+resume_from_checkpoint=None,
+run_name=exp/noDA_noCSLU_promptFT_lr1e-4_4ksteps/,
+save_on_each_node=False,
+save_safetensors=False,
+save_steps=1000,
+save_strategy=steps,
+save_total_limit=None,
+seed=1234,
+sharded_ddp=[],
+skip_memory_metrics=True,
+sortish_sampler=False,
+tf32=None,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_cpu=False,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_mps_device=False,
+warmup_ratio=0.0,
+warmup_steps=500,
+weight_decay=0.0,
+)
+Reading 18724 lines from data/train_myst/wav.scp
+Reading 18724 lines from data/train_myst/text
+Reading 2944 lines from data/dev_myst/wav.scp
+Reading 2944 lines from data/dev_myst/text
+{'loss': 1.2741, 'learning_rate': 1e-05, 'epoch': 0.01}
+{'loss': 1.2163, 'learning_rate': 2e-05, 'epoch': 0.03}
+{'loss': 1.1025, 'learning_rate': 3e-05, 'epoch': 0.04}
+{'loss': 0.9833, 'learning_rate': 4e-05, 'epoch': 0.05}
+{'loss': 0.8432, 'learning_rate': 5e-05, 'epoch': 0.06}
+{'loss': 0.6798, 'learning_rate': 6e-05, 'epoch': 0.07}
+{'loss': 0.6269, 'learning_rate': 7e-05, 'epoch': 0.09}
+{'loss': 0.5728, 'learning_rate': 8e-05, 'epoch': 0.1}
+{'loss': 0.5254, 'learning_rate': 9e-05, 'epoch': 0.11}
+{'loss': 0.4945, 'learning_rate': 0.0001, 'epoch': 0.12}
+{'loss': 0.4928, 'learning_rate': 9.857142857142858e-05, 'epoch': 0.14}
+{'loss': 0.4111, 'learning_rate': 9.714285714285715e-05, 'epoch': 1.0}
+{'loss': 0.4087, 'learning_rate': 9.571428571428573e-05, 'epoch': 1.02}
+{'loss': 0.4032, 'learning_rate': 9.428571428571429e-05, 'epoch': 1.03}
+{'loss': 0.3949, 'learning_rate': 9.285714285714286e-05, 'epoch': 1.04}
+{'loss': 0.4118, 'learning_rate': 9.142857142857143e-05, 'epoch': 1.05}
+{'loss': 0.4367, 'learning_rate': 9e-05, 'epoch': 1.07}
+{'loss': 0.3957, 'learning_rate': 8.857142857142857e-05, 'epoch': 1.08}
+{'loss': 0.3649, 'learning_rate': 8.714285714285715e-05, 'epoch': 1.09}
+{'loss': 0.4065, 'learning_rate': 8.571428571428571e-05, 'epoch': 1.1}
+{'eval_loss': 0.36729738116264343, 'eval_wer': 0.1255633645315857, 'eval_runtime': 594.5436, 'eval_samples_per_second': 4.952, 'eval_steps_per_second': 0.309, 'epoch': 1.1}
+{'loss': 0.3395, 'learning_rate': 8.428571428571429e-05, 'epoch': 1.12}
+{'loss': 0.4163, 'learning_rate': 8.285714285714287e-05, 'epoch': 1.13}
+{'loss': 0.3609, 'learning_rate': 8.142857142857143e-05, 'epoch': 1.14}
+{'loss': 0.3173, 'learning_rate': 8e-05, 'epoch': 2.01}
+{'loss': 0.3591, 'learning_rate': 7.857142857142858e-05, 'epoch': 2.02}
+{'loss': 0.3433, 'learning_rate': 7.714285714285715e-05, 'epoch': 2.03}
+{'loss': 0.373, 'learning_rate': 7.571428571428571e-05, 'epoch': 2.04}
+{'loss': 0.346, 'learning_rate': 7.428571428571429e-05, 'epoch': 2.06}
+{'loss': 0.3784, 'learning_rate': 7.285714285714286e-05, 'epoch': 2.07}
+{'loss': 0.3518, 'learning_rate': 7.142857142857143e-05, 'epoch': 2.08}
+{'loss': 0.3422, 'learning_rate': 7e-05, 'epoch': 2.09}
+{'loss': 0.3726, 'learning_rate': 6.857142857142858e-05, 'epoch': 2.11}
+{'loss': 0.3248, 'learning_rate': 6.714285714285714e-05, 'epoch': 2.12}
+{'loss': 0.3996, 'learning_rate': 6.571428571428571e-05, 'epoch': 2.13}
+{'loss': 0.315, 'learning_rate': 6.428571428571429e-05, 'epoch': 2.14}
+{'loss': 0.3287, 'learning_rate': 6.285714285714286e-05, 'epoch': 3.01}
+{'loss': 0.3253, 'learning_rate': 6.142857142857143e-05, 'epoch': 3.02}
+{'loss': 0.3173, 'learning_rate': 6e-05, 'epoch': 3.04}
+{'loss': 0.3737, 'learning_rate': 5.8571428571428575e-05, 'epoch': 3.05}
+{'loss': 0.3506, 'learning_rate': 5.714285714285714e-05, 'epoch': 3.06}
+{'eval_loss': 0.3416793644428253, 'eval_wer': 0.10461467560368957, 'eval_runtime': 470.7698, 'eval_samples_per_second': 6.254, 'eval_steps_per_second': 0.391, 'epoch': 3.06}
+{'loss': 0.3434, 'learning_rate': 5.571428571428572e-05, 'epoch': 3.07}
+{'loss': 0.3294, 'learning_rate': 5.428571428571428e-05, 'epoch': 3.09}
+{'loss': 0.347, 'learning_rate': 5.285714285714286e-05, 'epoch': 3.1}
+{'loss': 0.3521, 'learning_rate': 5.142857142857143e-05, 'epoch': 3.11}
+{'loss': 0.3265, 'learning_rate': 5e-05, 'epoch': 3.12}
+{'loss': 0.3642, 'learning_rate': 4.8571428571428576e-05, 'epoch': 3.14}
+{'loss': 0.3169, 'learning_rate': 4.714285714285714e-05, 'epoch': 4.0}
+{'loss': 0.3159, 'learning_rate': 4.574285714285714e-05, 'epoch': 4.01}
+{'loss': 0.3161, 'learning_rate': 4.4314285714285716e-05, 'epoch': 4.03}
+{'loss': 0.3127, 'learning_rate': 4.288571428571429e-05, 'epoch': 4.04}
+{'loss': 0.3512, 'learning_rate': 4.145714285714286e-05, 'epoch': 4.05}
+{'loss': 0.3722, 'learning_rate': 4.002857142857143e-05, 'epoch': 4.06}
+{'loss': 0.3312, 'learning_rate': 3.86e-05, 'epoch': 4.08}
+{'loss': 0.3211, 'learning_rate': 3.717142857142858e-05, 'epoch': 4.09}
+{'loss': 0.3483, 'learning_rate': 3.574285714285714e-05, 'epoch': 4.1}
+{'loss': 0.3124, 'learning_rate': 3.431428571428572e-05, 'epoch': 4.11}
+{'loss': 0.3795, 'learning_rate': 3.2885714285714284e-05, 'epoch': 4.13}
+{'loss': 0.3299, 'learning_rate': 3.145714285714286e-05, 'epoch': 4.14}
+{'loss': 0.2876, 'learning_rate': 3.0028571428571427e-05, 'epoch': 5.01}
+{'loss': 0.3208, 'learning_rate': 2.86e-05, 'epoch': 5.02}
+{'eval_loss': 0.3340519964694977, 'eval_wer': 0.0988675102168064, 'eval_runtime': 461.2909, 'eval_samples_per_second': 6.382, 'eval_steps_per_second': 0.399, 'epoch': 5.02}
+{'loss': 0.3127, 'learning_rate': 2.7171428571428574e-05, 'epoch': 5.03}
+{'loss': 0.3154, 'learning_rate': 2.5742857142857148e-05, 'epoch': 5.04}
+{'loss': 0.3581, 'learning_rate': 2.4314285714285714e-05, 'epoch': 5.06}
+{'loss': 0.3279, 'learning_rate': 2.2885714285714288e-05, 'epoch': 5.07}
+{'loss': 0.3508, 'learning_rate': 2.1457142857142858e-05, 'epoch': 5.08}
+{'loss': 0.3057, 'learning_rate': 2.002857142857143e-05, 'epoch': 5.09}
+{'loss': 0.3684, 'learning_rate': 1.86e-05, 'epoch': 5.11}
+{'loss': 0.2927, 'learning_rate': 1.717142857142857e-05, 'epoch': 5.12}
+{'loss': 0.3655, 'learning_rate': 1.574285714285714e-05, 'epoch': 5.13}
+{'loss': 0.3102, 'learning_rate': 1.4314285714285717e-05, 'epoch': 5.14}
+{'loss': 0.3109, 'learning_rate': 1.2885714285714287e-05, 'epoch': 6.01}
+{'loss': 0.3171, 'learning_rate': 1.1457142857142859e-05, 'epoch': 6.02}
+{'loss': 0.3065, 'learning_rate': 1.0028571428571429e-05, 'epoch': 6.03}
+{'loss': 0.341, 'learning_rate': 8.599999999999999e-06, 'epoch': 6.05}
+{'loss': 0.3328, 'learning_rate': 7.171428571428572e-06, 'epoch': 6.06}
+{'loss': 0.3344, 'learning_rate': 5.7428571428571426e-06, 'epoch': 6.07}
+{'loss': 0.3198, 'learning_rate': 4.314285714285714e-06, 'epoch': 6.08}
+{'loss': 0.3174, 'learning_rate': 2.8857142857142857e-06, 'epoch': 6.1}
+{'loss': 0.3503, 'learning_rate': 1.4571428571428573e-06, 'epoch': 6.11}
+{'loss': 0.3178, 'learning_rate': 2.8571428571428575e-08, 'epoch': 6.12}
+{'eval_loss': 0.3310464918613434, 'eval_wer': 0.09711896225711787, 'eval_runtime': 470.606, 'eval_samples_per_second': 6.256, 'eval_steps_per_second': 0.391, 'epoch': 6.12}
+{'train_runtime': 11848.2992, 'train_samples_per_second': 10.803, 'train_steps_per_second': 0.338, 'train_loss': 0.4089300866127014, 'epoch': 6.12}
+***** train metrics *****
+  epoch                    =       6.12
+  train_loss               =     0.4089
+  train_runtime            = 3:17:28.29
+  train_samples_per_second =     10.803
+  train_steps_per_second   =      0.338
+[Stage 2] Finetuning Whisper Models Finished.
