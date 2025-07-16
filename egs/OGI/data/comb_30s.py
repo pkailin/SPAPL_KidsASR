@@ -4,9 +4,9 @@ import numpy as np
 from collections import defaultdict
 
 # Hardcoded file paths - replace these with your actual paths
-WAV_SCP = "train_wav.scp"  # Path to your wav.scp file
-TEXT_FILE = "train_text_edited"   # Path to your text file
-WAV_OUTPUT_DIR = "/home/klp65/rds/hpc-work/cslu_kids/speech/scripted/train"  # Directory for combined wav files
+WAV_SCP = "dev_wav.scp"  # Path to your wav.scp file
+TEXT_FILE = "dev_text_edited"   # Path to your text file
+WAV_OUTPUT_DIR = "/home/klp65/rds/hpc-work/cslu_kids/speech/scripted/dev"  # Directory for combined wav files
 META_OUTPUT_DIR = "./"  # Directory for wav_comb.scp and text_comb files
 MAX_DURATION = 30.0  # Maximum duration in seconds for combined files
 
@@ -119,10 +119,10 @@ def main():
         combined_text.append(f"{combined_utt_id} {combined_transcription}")
     
     # Write output files to META_OUTPUT_DIR
-    with open(os.path.join(META_OUTPUT_DIR, "train_wav_comb.scp"), 'w') as f:
+    with open(os.path.join(META_OUTPUT_DIR, "dev_wav_comb.scp"), 'w') as f:
         f.write("\n".join(combined_wav_scp))
     
-    with open(os.path.join(META_OUTPUT_DIR, "train_text_edited_comb"), 'w') as f:
+    with open(os.path.join(META_OUTPUT_DIR, "dev_text_edited_comb"), 'w') as f:
         f.write("\n".join(combined_text))
     
     # Create a mapping file to keep track of which utterances were combined

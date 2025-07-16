@@ -4,9 +4,15 @@ import numpy as np
 from collections import defaultdict
 
 # Hardcoded file paths - replace these with your actual paths
-WAV_SCP = "train_wav.scp"  # Path to your wav.scp file
-TEXT_FILE = "train_text_edited"   # Path to your text file
-WAV_OUTPUT_DIR = "/home/klp65/rds/hpc-work/cslu_kids/speech/scripted/combined"  # Directory for combined wav files
+#WAV_SCP = "train_wav.scp"  # Path to your wav.scp file
+#TEXT_FILE = "train_text_edited"   # Path to your text file
+#WAV_OUTPUT_DIR = "/home/klp65/rds/hpc-work/cslu_kids/speech/scripted/combined"  # Directory for combined wav files
+
+WAV_SCP = "wav_21k.scp"  # Path to your wav.scp file
+TEXT_FILE = "text_21k"   # Path to your text file
+WAV_OUTPUT_DIR = "/home/klp65/rds/rds-altaslp-8YSp2LXTlkY/data/MyST-synthetic/combined"  # Directory for combined wav files
+
+
 META_OUTPUT_DIR = "./"  # Directory for wav_comb.scp and text_comb files
 MAX_DURATION = 30.0  # Maximum duration in seconds for combined files
 
@@ -52,7 +58,11 @@ def main():
             if len(parts) == 2:
                 utt_id, wav_path = parts
                 wav_dict[utt_id] = wav_path
-                total_duration += get_wav_duration(wav_path)
+
+                if not os.path.exists(wav_path):
+                    print(f"Warning: WAV file not found at {wav_path}, skipping...")
+                else: 
+                    total_duration += get_wav_duration(wav_path)
 
                 print(str(total_duration) + ' processed!')
     
@@ -81,7 +91,12 @@ def main():
         if utt_id not in text_dict:
             print(f"Warning: No transcript found for {utt_id}, skipping...")
             continue
-        
+
+        # Check if wav file exists
+        if not os.path.exists(wav_path):
+            print(f"Warning: WAV file not found at {wav_path}, skipping...")
+            continue
+
         file_duration = get_wav_duration(wav_path)
         
         if current_duration + file_duration > MAX_DURATION and current_group:
@@ -119,10 +134,10 @@ def main():
         combined_text.append(f"{combined_utt_id} {combined_transcription}")
     
     # Write output files to META_OUTPUT_DIR
-    with open(os.path.join(META_OUTPUT_DIR, "train_wav_comb.scp"), 'w') as f:
+    with open(os.path.join(META_OUTPUT_DIR, "wav_21k_comb.scp"), 'w') as f:
         f.write("\n".join(combined_wav_scp))
     
-    with open(os.path.join(META_OUTPUT_DIR, "train_text_edited_comb"), 'w') as f:
+    with open(os.path.join(META_OUTPUT_DIR, "text_21k_comb"), 'w') as f:
         f.write("\n".join(combined_text))
     
     # Create a mapping file to keep track of which utterances were combined

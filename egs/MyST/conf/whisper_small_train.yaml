@@ -11,14 +11,14 @@ load_best_model_at_end: True
 train_data_path:
   1:
     name: 'train'
-    scp_path: data/train_myst/wav.scp
-    text_label: data/train_myst/text
+    scp_path: data/train_myst_cslu/wav.scp
+    text_label: data/train_myst_cslu/text
 
 dev_data_path:
   1:
     name: 'development'
-    scp_path: data/dev_myst/wav.scp 
-    text_label: data/dev_myst/text
+    scp_path: data/dev_myst_cslu/wav.scp 
+    text_label: data/dev_myst_cslu/text
 
 streaming: True
 language: "en"  # None for english
@@ -33,14 +33,14 @@ vtlp_high: 1.1
 use_speed_perturb: False
 sp_low: 0.9
 sp_high: 1.1
-use_pitch_perturb: False
+use_pitch_perturb: True
 pitch_level: 12  # 12 steps for octave 
 use_pif: False #True
 pif_loss_alpha: 1.0
 pif_layer: 12   # 0-12
 
 # PEFT Argument
-peft_type: "prompt_tuning"
+peft_type: "adapter"
 lora_dim: 8
 lora_alpha: 128
 dropout: 0.1
@@ -59,19 +59,19 @@ prefix_hidden_dim: 16
 
 # Train Argument
 seed: 1234
-max_steps: 4000
-output_dir: "exp/noDA_noCSLU_promptFT_lr1e-4_4ksteps/"
+max_steps: 8000 # default at 4000
+output_dir: "exp/PP_CSLU_adapterFT_lr1e-3_8ksteps/"
 overwrite_output_dir: False
 per_device_train_batch_size: 16  # actually for all gpus because using split_batches=True
 gradient_accumulation_steps: 2
 per_device_eval_batch_size: 16
 logging_steps: 50
-learning_rate: 0.0001    # 1e-3 for peft and 1e-5 for full finetuning
+learning_rate: 0.001    # 1e-3 for peft and 1e-5 for full finetuning
 warmup_steps: 500
 evaluation_strategy: "steps"
-eval_steps: 1000
+eval_steps: 500 # default at 1000
 save_strategy: "steps"
-save_steps: 1000 
+save_steps: 500 # default at 1000
 generation_max_length: 225 
 length_column_name: "input_length"
 gradient_checkpointing: False

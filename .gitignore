@@ -1,3 +1,8 @@
+egs/MyST/logs/out.*
+egs/MyST/machine.file*
+egs/MyST/slurm*
+egs/MyST/*sclite*
+
 #/egs/*/data
 /egs/*/exp*
 /egs/*/cached*

@@ -5,10 +5,19 @@
 # Reference code: 
 # https://github.com/huggingface/transformers/blob/main/examples/pytorch/speech-recognition/run_speech_recognition_seq2seq.py
 
+import os
+os.environ["HF_HOME"] = "/home/klp65/rds/hpc-work/cache"
+os.environ["PIP_CACHE_DIR"] = "/home/klp65/rds/hpc-work/cache/pip"
+# Make sure the directories exist
+os.makedirs("/home/klp65/rds/hpc-work/cache", exist_ok=True)
+os.makedirs("/home/klp65/rds/hpc-work/cache/pip", exist_ok=True)
+
 
 import logging
 import os
 import sys
+
+import os
 
 import datasets
 import evaluate
@@ -29,6 +38,8 @@ from transformers import (
 from transformers import EarlyStoppingCallback
 from transformers.trainer_utils import get_last_checkpoint, is_main_process
 
+
+os.environ["TRANSFORMERS_NO_TF"] = "1"
 sys.path.append(os.environ['rootdir']+'/src') 
 os.environ["WANDB_DISABLED"] = "true"
 from arguments import WhisperModelArguments, DataTrainingArguments, PEFTArguments

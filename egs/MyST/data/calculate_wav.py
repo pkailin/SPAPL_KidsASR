@@ -5,7 +5,7 @@ import wave
 from concurrent.futures import ThreadPoolExecutor
 
 # Hardcoded path to wav.scp file
-WAV_SCP_PATH = "test_wav.scp"  # Change this to your actual path
+WAV_SCP_PATH = "test_wav_unfiltered.scp"  # Change this to your actual path
 
 def get_wav_duration(wav_path):
     """Get the duration of a WAV file in seconds."""
